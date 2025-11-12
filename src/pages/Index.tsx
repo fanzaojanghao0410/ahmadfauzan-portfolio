@@ -22,45 +22,126 @@ const RotatingText = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [direction, setDirection] = useState(1); // 1 for down, -1 for up
 
   useEffect(() => {
     if (texts.length === 0) return;
     
     const interval = setInterval(() => {
       setIsAnimating(true);
+      setDirection(1); // Always go down for automatic rotation
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % texts.length);
         setIsAnimating(false);
-      }, 400);
+      }, 500);
     }, rotationInterval);
 
     return () => clearInterval(interval);
   }, [texts.length, rotationInterval]);
 
+  const handleHover = () => {
+    setIsAnimating(true);
+    setDirection(-1); // Go up on hover
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev - 1 + texts.length) % texts.length);
+      setIsAnimating(false);
+    }, 300);
+  };
+
   if (texts.length === 0) return null;
 
   return (
-    <motion.div className="flex items-center justify-center">
+    <motion.div 
+      className="flex items-center justify-center"
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.2 }}
+    >
       <motion.div 
-        className="rotating-text-container"
+        className="rotating-text-container relative"
+        onHoverStart={handleHover}
         whileHover={{
-          scale: 1.02,
-          backgroundColor: "rgba(128, 0, 32, 0.18)",
-          transition: { duration: 0.2 }
+          backgroundColor: "rgba(128, 0, 32, 0.25)",
+          boxShadow: "0 0 20px rgba(128, 0, 32, 0.3)",
+          transition: { duration: 0.3 }
         }}
       >
-        <AnimatePresence mode="wait">
-          <motion.span
-            key={currentIndex}
-            initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, y: -12, filter: "blur(4px)" }}
-            transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="rotating-text inline-block font-bold text-xl md:text-2xl tracking-tight whitespace-nowrap"
-          >
-            {texts[currentIndex]}
-          </motion.span>
-        </AnimatePresence>
+        {/* Background accent */}
+        <motion.div 
+          className="absolute inset-0 rounded-lg opacity-0"
+          whileHover={{ opacity: 1 }}
+          style={{
+            background: "linear-gradient(45deg, rgba(128, 0, 32, 0.1), rgba(160, 0, 42, 0.05))"
+          }}
+          transition={{ duration: 0.3 }}
+        />
+        
+        {/* Animated border */}
+        <motion.div
+          className="absolute inset-0 rounded-lg"
+          style={{
+            background: "linear-gradient(45deg, transparent, rgba(128, 0, 32, 0.3), transparent)",
+            opacity: 0
+          }}
+          whileHover={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+        />
+        
+        <div className="relative z-10 px-6 py-2.5">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.span
+              key={currentIndex}
+              custom={direction}
+              initial={{ 
+                opacity: 0, 
+                y: direction * 20, 
+                filter: "blur(4px)",
+                scale: 0.9
+              }}
+              animate={{ 
+                opacity: 1, 
+                y: 0, 
+                filter: "blur(0px)",
+                scale: 1
+              }}
+              exit={{ 
+                opacity: 0, 
+                y: direction * -20, 
+                filter: "blur(4px)",
+                scale: 1.1
+              }}
+              transition={{ 
+                duration: 0.5, 
+                ease: [0.25, 0.46, 0.45, 0.94],
+                scale: {
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 15
+                }
+              }}
+              className="rotating-text inline-block font-bold text-xl md:text-2xl lg:text-3xl tracking-tight whitespace-nowrap"
+              style={{ 
+                color: 'rgba(255, 240, 240, 0.95)',
+                textShadow: '0 2px 10px rgba(128, 0, 32, 0.3)'
+              }}
+            >
+              {texts[currentIndex]}
+            </motion.span>
+          </AnimatePresence>
+        </div>
+
+        {/* Decorative dots */}
+        <motion.div 
+          className="absolute -top-1 -right-1 w-2 h-2 rounded-full"
+          style={{ backgroundColor: 'var(--maroon-primary)' }}
+          animate={{ scale: [1, 1.5, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        />
+        <motion.div 
+          className="absolute -bottom-1 -left-1 w-2 h-2 rounded-full"
+          style={{ backgroundColor: 'var(--maroon-primary)' }}
+          animate={{ scale: [1, 1.5, 1] }}
+          transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+        />
       </motion.div>
     </motion.div>
   );
@@ -194,7 +275,6 @@ const AboutPreview = () => {
   );
 };
 
-// Skills Preview Component
 // Skills Preview Component
 const SkillsPreview = () => {
   const ref = useRef(null);
@@ -439,9 +519,9 @@ const ContactPreview = () => {
             </p>
             <div className="flex justify-center">
               <Link to="/contact">
-                <Button size="lg" className="primary-button text-base md:text-lg px-8 py-6">
+                <Button className="primary-button">
                   Get In Touch
-                  <Mail className="ml-2 w-5 h-5" />
+                  <Mail className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
             </div>
@@ -474,7 +554,7 @@ const Index = () => {
 
   return (
     <PageLayout>
-      <div className="index-container index-background relative overflow-hidden">
+      <div className="">
         {/* Particles Background */}
         <div style={{ 
           width: '100%', 
@@ -561,7 +641,7 @@ const Index = () => {
               {/* Main Headline */}
               <motion.div className="mb-8">
                 <motion.h1
-                  className="name-typography text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight"
+                  className="name-typography text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight"
                 >
                   {name.split('').map((letter, index) => (
                     <motion.span
@@ -602,7 +682,7 @@ const Index = () => {
                     }}
                   >
                     <motion.span 
-                      className="font-bold text-xl sm:text-2xl md:text-3xl tracking-tight"
+                      className="font-bold text-lg sm:text-xl md:text-2xl tracking-tight"
                       style={{ color: 'rgba(255, 240, 240, 0.95)' }}
                     >
                       Creative
@@ -618,7 +698,7 @@ const Index = () => {
                 variants={letterVariants}
               >
                 <motion.p
-                  className="description-text text-lg sm:text-xl md:text-2xl leading-relaxed font-medium px-4"
+                  className="description-text text-base sm:text-lg md:text-xl leading-relaxed font-medium px-4"
                   initial="hidden"
                   animate="visible"
                   style={{ color: 'rgba(255, 220, 220, 0.85)' }}
@@ -763,7 +843,7 @@ const Index = () => {
                     }}
                   >
                     <motion.div 
-                      className="stat-value text-3xl md:text-4xl font-bold mb-2"
+                      className="stat-value text-2xl md:text-3xl font-bold mb-2"
                       whileHover={{ 
                         color: "var(--maroon-light)",
                         scale: 1.1,

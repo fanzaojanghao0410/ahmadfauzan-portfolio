@@ -172,11 +172,11 @@ const About = () => {
                       handle="ahmadfauzan"
                       status="Online"
                       contactText="Contact Me"
-                      avatarUrl="/path/to/avatar.jpg"
+                      avatarUrl="src/assets/profile1.png"
                       showUserInfo={true}
                       enableTilt={true}
                       enableMobileTilt={false}
-                      onContactClick={() => console.log('Contact clicked')}
+                      onContactClick={() => window.location.href = '/Contact'}
                     />
                   </div>
                 </motion.div>
