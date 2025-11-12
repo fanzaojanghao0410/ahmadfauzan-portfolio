@@ -1,0 +1,520 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 0 61% 30%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 48% 83%;
+    --secondary-foreground: 0 61% 30%;
+
+    --muted: 0 10% 95%;
+    --muted-foreground: 0 5% 45%;
+
+    --accent: 0 48% 83%;
+    --accent-foreground: 0 61% 30%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 10% 90%;
+    --input: 0 10% 90%;
+    --ring: 0 61% 30%;
+
+    --radius: 1rem;
+
+    --gradient-hero: linear-gradient(135deg, hsl(0, 61%, 30%), hsl(0, 48%, 83%));
+    --gradient-card: linear-gradient(180deg, hsl(0, 0%, 100%), hsl(0, 10%, 98%));
+    
+    --shadow-glow: 0 0 20px hsla(0, 61%, 30%, 0.2);
+    --shadow-card: 0 4px 20px hsla(0, 0%, 0%, 0.08);
+
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 0 61% 30%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 48% 83%;
+    --sidebar-accent-foreground: 0 61% 30%;
+    --sidebar-border: 0 10% 90%;
+    --sidebar-ring: 0 61% 30%;
+  }
+
+  .dark {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 61% 50%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 20% 20%;
+    --secondary-foreground: 0 48% 83%;
+
+    --muted: 0 5% 18%;
+    --muted-foreground: 0 5% 65%;
+
+    --accent: 0 40% 25%;
+    --accent-foreground: 0 48% 83%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 10% 18%;
+    --input: 0 10% 18%;
+    --ring: 0 48% 83%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(0, 61%, 30%), hsl(0, 40%, 20%));
+    --gradient-card: linear-gradient(180deg, hsl(0, 0%, 12%), hsl(0, 5%, 10%));
+    
+    --shadow-glow: 0 0 30px hsla(0, 61%, 50%, 0.3);
+    --shadow-card: 0 4px 20px hsla(0, 0%, 0%, 0.4);
+
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 0 61% 50%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 40% 25%;
+    --sidebar-accent-foreground: 0 48% 83%;
+    --sidebar-border: 0 10% 18%;
+    --sidebar-ring: 0 48% 83%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer utilities {
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+}
+
+/* Gradient Text Animations */
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+.animate-gradient-slow {
+  animation: gradientShift 5s ease-in-out infinite;
+}
+
+/* Enhanced hover effects */
+.hover-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 40px hsl(var(--primary) / 0.15);
+}
+
+/* App-specific styles */
+.app-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.particles-background {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  pointer-events: auto;
+}
+
+.app-layout {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+}
+
+.app-main {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+/* Custom cursor styles */
+.splash-cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Theme transition */
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Glass effect for cards */
+.glass-effect {
+  background: hsl(var(--card) / 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid hsl(var(--border) / 0.2);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .app-layout {
+    flex-direction: column;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.5);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.7);
+}
+
+/* Loading states */
+.loading-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Focus states for accessibility */
+.focus-outline:focus {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --border: 0 100% 0%;
+    --shadow-glow: 0 0 10px hsla(0, 0%, 0%, 0.8);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-gradient,
+  .animate-gradient-slow {
+    animation: none;
+  }
+}
+
+/* ============================================
+   Global Maroon Theme Styles (from Index.css)
+   ============================================ */
+
+:root {
+  --maroon-primary: #800020;
+  --maroon-dark: #5a0017;
+  --maroon-light: #a0002a;
+  --maroon-glow: rgba(128, 0, 32, 0.6);
+  --maroon-secondary: rgba(90, 0, 23, 0.6);
+  --gold-accent: #d4af37;
+  --gold-glow: rgba(212, 175, 55, 0.4);
+  
+  --glass-bg: rgba(40, 0, 10, 0.95);
+  --glass-border: rgba(128, 0, 32, 0.3);
+  --text-primary-maroon: rgba(255, 220, 220, 0.95);
+  --text-secondary-maroon: rgba(255, 200, 200, 0.7);
+  --hover-effect: rgba(128, 0, 32, 0.2);
+}
+
+/* Primary Button - Maroon Theme */
+.primary-button {
+  background: linear-gradient(135deg, 
+    var(--maroon-primary) 0%, 
+    var(--maroon-light) 100%) !important;
+  border: 1px solid rgba(128, 0, 32, 0.5) !important;
+  box-shadow: 
+    0 4px 20px rgba(128, 0, 32, 0.4),
+    0 0 30px rgba(128, 0, 32, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  color: rgba(255, 220, 220, 0.95) !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.primary-button:hover {
+  background: linear-gradient(135deg, 
+    var(--maroon-light) 0%, 
+    #c00035 100%) !important;
+  box-shadow: 
+    0 6px 25px rgba(128, 0, 32, 0.6),
+    0 0 40px rgba(128, 0, 32, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-2px);
+}
+
+.primary-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent);
+  transition: left 0.6s ease;
+}
+
+.primary-button:hover::before {
+  left: 100%;
+}
+
+/* Outline Button - Maroon Theme */
+.outline-button {
+  background: linear-gradient(135deg, 
+    rgba(40, 0, 10, 0.6) 0%, 
+    rgba(60, 0, 15, 0.5) 100%) !important;
+  border: 1px solid rgba(128, 0, 32, 0.4) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 4px 15px rgba(128, 0, 32, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 220, 220, 0.9) !important;
+  transition: all 0.3s ease;
+}
+
+.outline-button:hover {
+  background: linear-gradient(135deg, 
+    rgba(128, 0, 32, 0.15) 0%, 
+    rgba(160, 0, 42, 0.1) 100%) !important;
+  border: 1px solid rgba(128, 0, 32, 0.6) !important;
+  box-shadow: 
+    0 6px 20px rgba(128, 0, 32, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+  transform: translateY(-2px);
+}
+
+/* Button Animations */
+@keyframes maroonGlowPulse {
+  0%, 100% {
+    box-shadow: 
+      0 4px 20px rgba(128, 0, 32, 0.4),
+      0 0 30px rgba(128, 0, 32, 0.3);
+  }
+  50% {
+    box-shadow: 
+      0 6px 25px rgba(128, 0, 32, 0.6),
+      0 0 40px rgba(128, 0, 32, 0.4);
+  }
+}
+
+.primary-button {
+  animation: maroonGlowPulse 3s ease-in-out infinite;
+}
+
+/* Button Icons */
+.button-icon-primary {
+  filter: drop-shadow(0 0 4px rgba(128, 0, 32, 0.6));
+}
+
+.button-icon-outline {
+  background: var(--maroon-primary);
+  box-shadow: 
+    0 0 8px var(--maroon-glow),
+    0 0 16px rgba(128, 0, 32, 0.3);
+}
+
+/* Maroon Text Colors */
+.text-maroon {
+  color: var(--maroon-primary) !important;
+}
+
+.text-maroon-light {
+  color: var(--maroon-light) !important;
+}
+
+.hover\:text-maroon:hover {
+  color: var(--maroon-primary) !important;
+}
+
+/* Maroon Background Utilities - Use with style prop or inline styles */
+
+/* Section Borders */
+.section-border {
+  border-color: rgba(128, 0, 32, 0.3) !important;
+}
+
+/* Reduced Motion Support for Buttons */
+@media (prefers-reduced-motion: reduce) {
+  .primary-button {
+    animation: none;
+  }
+  
+  .primary-button:hover::before {
+    transition: none;
+  }
+}
+
+/* ============================================
+   Global Typography Standards
+   ============================================ */
+
+/* Page Titles - Consistent across all pages */
+.page-title {
+  font-size: 2.25rem; /* text-4xl */
+  font-weight: 700;
+  line-height: 1.2;
+  color: rgba(255, 240, 240, 0.95);
+}
+
+@media (min-width: 768px) {
+  .page-title {
+    font-size: 3rem; /* text-5xl */
+  }
+}
+
+/* Section Titles */
+.section-title {
+  font-size: 1.5rem; /* text-2xl */
+  font-weight: 600;
+  line-height: 1.3;
+  color: rgba(255, 240, 240, 0.95);
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 1.875rem; /* text-3xl */
+  }
+}
+
+/* Subsection Titles */
+.subsection-title {
+  font-size: 1.25rem; /* text-xl */
+  font-weight: 600;
+  line-height: 1.4;
+  color: rgba(255, 240, 240, 0.95);
+}
+
+@media (min-width: 768px) {
+  .subsection-title {
+    font-size: 1.5rem; /* text-2xl */
+  }
+}
+
+/* Body Text - Primary */
+.body-text-primary {
+  font-size: 1rem; /* text-base */
+  line-height: 1.6;
+  color: rgba(255, 220, 220, 0.85);
+}
+
+@media (min-width: 768px) {
+  .body-text-primary {
+    font-size: 1.125rem; /* text-lg */
+  }
+}
+
+/* Body Text - Secondary */
+.body-text-secondary {
+  font-size: 0.875rem; /* text-sm */
+  line-height: 1.5;
+  color: rgba(255, 200, 200, 0.7);
+}
+
+/* Subtitle/Description */
+.subtitle {
+  font-size: 1.125rem; /* text-lg */
+  line-height: 1.6;
+  color: rgba(255, 220, 220, 0.85);
+}
+
+@media (min-width: 768px) {
+  .subtitle {
+    font-size: 1.25rem; /* text-xl */
+  }
+}
+
+/* Label Text */
+.label-text {
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500;
+  color: rgba(255, 200, 200, 0.7);
+}
+
