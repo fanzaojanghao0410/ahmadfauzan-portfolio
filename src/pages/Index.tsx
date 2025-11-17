@@ -8,9 +8,11 @@ import { Badge } from '@/components/ui/badge';
 import { PageLayout } from '@/components/PageLayout';
 import { useState, useEffect, useRef } from 'react';
 import Particles from '../components/Particles/Particles';
+import ProfileCard from '@/components/ProfileCard/ProfileCard';
 import { experiences } from '@/data/experiences';
 import { technicalSkills } from '@/data/skills';
 import './Index.css';
+import FeaturedProject from '@/components/FeaturedProject/FeaturedProject';
 
 // RotatingText Component
 const RotatingText = ({ 
@@ -226,7 +228,7 @@ const AboutPreview = () => {
               I am Ahmad Fauzan, an IT student with a multifaceted creative passion. By day, I craft 
               elegant frontend solutions; by night, I weave intricate narratives as a novelist.
             </p>
-            <p className="text-base md:text-lg leading-relaxed mb-8" style={{ color: 'rgba(255, 220, 220, 0.75)' }}>
+            <p className="text-lg md:text-xl leading-relaxed mb-6" style={{ color: 'rgba(255, 220, 220, 0.85)' }}>
               With expertise in visual design, web development, storytelling, and performance art, I bring a 
               holistic creative approach to every project, seamlessly blending aesthetics with functionality, 
               and imagination with innovation.
@@ -246,28 +248,18 @@ const AboutPreview = () => {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            <Card className="p-6 md:p-8 w-full max-w-md hover:shadow-glow transition-all" style={{ borderColor: 'rgba(128, 0, 32, 0.2)' }}>
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { label: 'Name', value: 'Ahmad Fauzan' },
-                  { label: 'Age', value: '17 years' },
-                  { label: 'Location', value: 'Bekasi, Indonesia' },
-                  { label: 'Education', value: 'IT Student' }
-                ].map((item, index) => (
-                  <motion.div
-                    key={item.label}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={inView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ delay: 0.4 + index * 0.1 }}
-                    className="p-4 rounded-lg"
-                    style={{ backgroundColor: 'rgba(128, 0, 32, 0.05)' }}
-                  >
-                    <p className="text-xs mb-2 uppercase tracking-wide" style={{ color: 'rgba(255, 200, 200, 0.7)' }}>{item.label}</p>
-                    <p className="font-semibold text-base" style={{ color: 'rgba(255, 240, 240, 0.95)' }}>{item.value}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </Card>
+          <ProfileCard
+            name="Ahmad Fauzan"
+            title="Creative Visionary & Developer"
+            handle="ahmadfauzan"
+            status="Online"
+            contactText="Contact Me"
+            avatarUrl="src/assets/profile1.png"
+            showUserInfo={true}
+            enableTilt={true}
+            enableMobileTilt={false}
+            onContactClick={() => window.location.href = '/Contact'}
+          />
           </motion.div>
         </div>
       </div>
@@ -537,6 +529,31 @@ const Index = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
   const [isHovering, setIsHovering] = useState(false);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const [velocity, setVelocity] = useState(0);
+
+  // Calculate scroll velocity
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const updateVelocity = () => {
+      const currentScrollY = window.scrollY;
+      const scrollDelta = Math.abs(currentScrollY - lastScrollY);
+      setVelocity(Math.min(scrollDelta / 10, 1)); // Normalize to 0-1 range
+      lastScrollY = currentScrollY;
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateVelocity);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -556,7 +573,7 @@ const Index = () => {
     <PageLayout>
       <div className="">
         {/* Particles Background */}
-        <div style={{ 
+        {/* <div style={{ 
           width: '100%', 
           height: '100%', 
           position: 'fixed',
@@ -575,10 +592,10 @@ const Index = () => {
             alphaParticles={false}
             disableRotation={false}
           />
-        </div>
+        </div> */}
 
         {/* Overlay */}
-        <div className="index-overlay absolute inset-0 z-1" />
+        {/* <div className="index-overlay absolute inset-0 z-1" /> */}
 
         {/* Cursor-activated dot */}
         {isHovering && (
@@ -864,9 +881,11 @@ const Index = () => {
 
         {/* Content Sections */}
         <div className="relative z-10">
+          {/* Act II - Featured Work */}
           <AboutPreview />
           <SkillsPreview />
           <ExperiencePreview />
+          <FeaturedProject />
           <ContactPreview />
         </div>
 

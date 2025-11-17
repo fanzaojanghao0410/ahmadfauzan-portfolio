@@ -19,10 +19,10 @@ const Contact = () => {
   });
 
   const socialLinks = [
-    { icon: Github, label: 'GitHub', href: '#', color: 'hover:text-gray-600' },
-    { icon: Instagram, label: 'Instagram', href: '#', color: 'hover:text-pink-500' },
+    { icon: Github, label: 'GitHub', href: 'https://github.com/fanzaojanghao0410', color: 'hover:text-gray-600' },
+    { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/aahmd.fznn', color: 'hover:text-pink-500' },
     { icon: Linkedin, label: 'LinkedIn', href: '#', color: 'hover:text-blue-600' },
-    { icon: Mail, label: 'Gmail', href: 'mailto:contact@ahmadfauzan.com', color: 'hover:text-red-500' },
+    { icon: Mail, label: 'Gmail', href: 'https://fanzaojanghao@gmail.com', color: 'hover:text-red-500' },
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -132,8 +132,7 @@ const Contact = () => {
                     <div>
                       <p className="font-medium" style={{ color: 'rgba(255, 240, 240, 0.95)' }}>Location</p>
                       <p className="text-sm" style={{ color: 'rgba(255, 220, 220, 0.85)' }}>
-                        Kirana Cibitung Block C6/6<br />
-                        Bekasi 17520, Indonesia
+                        Bekasi, Indonesia
                       </p>
                     </div>
                   </div>
@@ -144,7 +143,7 @@ const Contact = () => {
                     <div>
                       <p className="font-medium" style={{ color: 'rgba(255, 240, 240, 0.95)' }}>Email</p>
                       <p className="text-sm" style={{ color: 'rgba(255, 220, 220, 0.85)' }}>
-                        contact@ahmadfauzan.com
+                        fanzaojanghao@gmail.com
                       </p>
                     </div>
                   </div>

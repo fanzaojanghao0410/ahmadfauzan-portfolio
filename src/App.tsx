@@ -13,6 +13,7 @@ import LiquidEther from "./components/LiquidEther";
 import ProfileCard from '../src/components/ProfileCard/ProfileCard'
 import SplashCursor from '@/components/SplashCursor/SplashCursor'
 import Particles from '../src/components/Particles/Particles';
+import FloatingLines from '../src/components/FloatingLines/FloatingLines'; // Import FloatingLines
 
 import Index from "./pages/Index";
 import About from "./pages/About";
@@ -20,7 +21,6 @@ import Skills from "./pages/Skills";
 import Experience from "./pages/Experience";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
-
 
 const queryClient = new QueryClient();
 
@@ -33,33 +33,30 @@ const App = () => {
           <Sonner />
 
           <BrowserRouter>
-            {/* ===================== */}
-            {/* ✨ Particles Background */}
-            {/* ===================== */}
+            {/* ✨ FloatingLines Background */}
             <div style={{ 
+              position: 'fixed', 
+              top: 0, 
+              left: 0, 
               width: '100%', 
-              height: '100vh', 
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              zIndex: -1,
-              pointerEvents: 'auto'
+              height: '100%', 
+              zIndex: -1 
             }}>
-              <Particles
-                particleColors={['#ffffff', '#ffffff']}
-                particleCount={200}
-                particleSpread={10}
-                speed={0.1}
-                particleBaseSize={100}
-                moveParticlesOnHover={true}
-                alphaParticles={false}
-                disableRotation={false}
+              <FloatingLines
+                linesGradient={['#800000', '#500000']} // Dark maroon to darker maroon
+                enabledWaves={['top', 'middle', 'bottom']} // Gelombang yang aktif
+                lineCount={[8, 6, 4]} // Jumlah garis untuk setiap layer
+                animationSpeed={1}
+                interactive={true} // Interaksi dengan mouse
+                parallax={true} // Efek parallax
+                mixBlendMode="screen" // Blend mode
               />
             </div>
+            
+            {/* Overlay */}
+            <div className="index-overlay fixed w-screen h-screen" />
 
-            {/* ===================== */}
             {/* 🌐 App Layout */}
-            {/* ===================== */}
             <div className="relative min-h-screen w-full flex">
               {/* Sidebar */}
               <Sidebar />

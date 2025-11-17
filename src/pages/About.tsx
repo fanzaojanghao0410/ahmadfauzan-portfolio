@@ -42,8 +42,8 @@ const About = () => {
 
   const personalDetails = [
     { icon: User, label: 'Name', value: 'Ahmad Fauzan' },
-    { icon: Calendar, label: 'Date of Birth', value: 'September 22, 2008 (17 years)' },
-    { icon: MapPin, label: 'Location', value: 'Kirana Cibitung, Bekasi, Indonesia' },
+    { icon: MapPin, label: 'Based In', value: 'Bekasi, Indonesia' },
+    { icon: Code, label: 'Focus', value: 'Frontend Development & Creative Tech' },
   ];
 
   const education = [
@@ -131,7 +131,7 @@ const About = () => {
               initial={{ width: 0 }}
               animate={{ width: 120 }}
               transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
-              style={{ background: 'linear-gradient(90deg, var(--maroon-primary), var(--maroon-light))' }}
+              style={{ background: '' }}
             />
           </motion.div>
 
