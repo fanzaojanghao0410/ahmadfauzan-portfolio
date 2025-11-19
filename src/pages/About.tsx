@@ -172,7 +172,7 @@ const About = () => {
                       handle="ahmadfauzan"
                       status="Online"
                       contactText="Contact Me"
-                      avatarUrl="src/assets/profile1.png"
+                      avatarUrl="/profile1.png"
                       showUserInfo={true}
                       enableTilt={true}
                       enableMobileTilt={false}
