@@ -1116,13 +1116,6 @@ return (
         <p className={`face-description ${isMoving ? 'inactive' : 'active'} text-foreground/80`}>
           {activeItem.description}
         </p>
-
-        <div 
-          onClick={handleButtonClick} 
-          className={`action-button ${isMoving ? 'inactive' : 'active'} border-foreground hover:bg-foreground/10`}
-        >
-          <p className="action-button-icon text-foreground">&#x2197;</p>
-        </div>
       </>
     )}
   </div>

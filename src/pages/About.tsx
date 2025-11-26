@@ -51,18 +51,13 @@ const About = () => {
       period: '2024 – Present',
       institution: 'Metland Vocational High School',
       major: 'Information Technology'
-    },
-    {
-      period: '2021 – 2024',
-      institution: 'Ibnu Katsir Islamic Boarding School',
-      major: ''
-    },
-    {
-      period: '2015 – 2021',
-      institution: 'Mutiara Sunnah Elementary School',
-      major: ''
     }
   ];
+
+  // Map institution names to logo image paths (place logos in `public/images/education/`)
+  const educationLogos: Record<string, string> = {
+    'Metland Vocational High School': '/education-logo/LOGO SMK METLAND.png',
+  };
 
   const values = [
     { icon: Target, title: 'Visionary', description: 'Pushing creative boundaries across multiple disciplines' },
@@ -414,10 +409,18 @@ const About = () => {
                       />
                       
                       <Card 
-                        className="ml-0 md:ml-16 p-6 hover:shadow-glow transition-all duration-300 relative overflow-hidden group" 
+                        className="ml-0 md:ml-16 p-6 md:pl-24 hover:shadow-glow transition-all duration-300 relative overflow-hidden group" 
                         style={{ borderColor: 'rgba(128, 0, 32, 0.2)' }}
                         whileHover={{ x: 5 }}
                       >
+                        {/* Education logo as direct image (absolute, vertically centered). Hidden on small screens. */}
+                        <img
+                          src={educationLogos[edu.institution] || '/images/education/default-school.png'}
+                          alt={`${edu.institution} logo`}
+                          aria-hidden
+                          className="hidden md:block absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 object-contain transition-transform duration-300 group-hover:scale-105 shadow-md"
+                        />
+
                         <motion.div
                           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                           style={{ background: 'linear-gradient(to right, rgba(128, 0, 32, 0.05), transparent)' }}

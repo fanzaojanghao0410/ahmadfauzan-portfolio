@@ -792,14 +792,15 @@ const Index = () => {
                   >
                     <Button 
                       size="lg" 
-                      className="primary-button group relative font-semibold px-8 py-6 text-base md:text-lg rounded-xl transition-all duration-300"
+                      className="primary-button group relative font-semibold px-8 py-6 text-base md:text-lg rounded-xl transition-all duration-300" 
                     >
                       <span className="relative z-10">Explore My Work</span>
                       <ArrowRight className="button-icon-primary ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 ease-out" />
                     </Button>
                   </motion.div>
                 </Link>
-                <Link to="/contact">
+                
+                <a href="https://drive.google.com/file/d/1fFvi-j3rT1jMHCscybAsZkBk-lUyE0nt/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                   <motion.div
                     whileHover={{ 
                       scale: 1.05, 
@@ -818,7 +819,7 @@ const Index = () => {
                       variant="outline" 
                       className="outline-button group font-semibold px-8 py-6 text-base md:text-lg rounded-xl transition-all duration-300"
                     >
-                      <span>Get In Touch</span>
+                      <span>Download CV</span>
                       <motion.div
                         className="button-icon-outline ml-2 w-1.5 h-1.5 rounded-full"
                         animate={{ 
@@ -832,7 +833,7 @@ const Index = () => {
                       />
                     </Button>
                   </motion.div>
-                </Link>
+                </a>
               </motion.div>
 
               {/* Key Metrics / Stats */}

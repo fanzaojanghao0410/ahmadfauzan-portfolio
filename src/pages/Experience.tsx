@@ -15,40 +15,41 @@ const items = [
   {
     image: '/images/emoji1.png',
     link: '#',
-    title: 'Creative Design',
-    description: 'Innovative visual solutions'
+    title: 'Digital Content Creation',
+    description: 'Creating structured, engaging, and purpose-driven digital materials'
   },
   {
     image: '/images/emoji2.png',
     link: '#',
-    title: 'Web Development',
-    description: 'Modern web applications'
+    title: 'Creative Writing',
+    description: 'Developing stories, scripts, and narrative concepts for digital media'
   },
   {
     image: '/images/emoji3.png',
     link: '#',
-    title: 'UI/UX Projects',
-    description: 'User-centered design'
+    title: 'Visual Design Basics',
+    description: 'Designing simple digital visuals and layouts for online use'
   },
   {
     image: '/images/emoji4.png',
     link: '#',
-    title: 'Brand Identity',
-    description: 'Memorable brand experiences'
+    title: 'Digital Branding',
+    description: 'Building personal branding elements for online identity'
   },
   {
     image: '/images/emoji5.png',
     link: '#',
-    title: 'Digital Strategy',
-    description: 'Strategic planning & execution'
+    title: 'Public Communication',
+    description: 'Presenting and delivering messages effectively through digital platforms'
   },
   {
     image: '/images/emoji6.png',
     link: '#',
-    title: 'Motion Design',
-    description: 'Dynamic animations'
+    title: 'Story Development',
+    description: 'Structuring ideas and turning them into digital-ready concepts'
   }
 ];
+
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -239,7 +240,7 @@ const Experience = () => {
             transition={{ duration: 1, delay: 0.9 }}
             className="relative"
           >
-            <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-all duration-300" style={{ border: '1px solid rgba(128, 0, 32, 0.2)' }}>
+            <div className="">
               <div className="h-[600px] relative rounded-xl overflow-hidden">
                 <InfiniteMenu items={items}/>
               </div>
