@@ -39,13 +39,13 @@ const items = [
   {
     image: '/images/emoji5.png',
     link: '#',
-    title: 'Public Communication',
-    description: 'Presenting and delivering messages effectively through digital platforms'
+    title: 'Event Hosting',
+    description: 'Presenting and leading events with clear, engaging delivery'
   },
   {
     image: '/images/emoji6.png',
     link: '#',
-    title: 'Story Development',
+    title: 'Digital Story Crafting',
     description: 'Structuring ideas and turning them into digital-ready concepts'
   }
 ];

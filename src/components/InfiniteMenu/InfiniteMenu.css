@@ -29,12 +29,19 @@
 }
 
 .face-title {
-  user-select: none;
   position: absolute;
   font-weight: 900;
-  font-size: 3rem;
-  left: 1.6em;
+  user-select: none;
+  max-width: 7ch;
   top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  font-size: 3rem;
+  text-align: right;
+  margin: 0;
+  line-height: 1.1;
+  margin-inline-start: auto; /* Untuk browser modern */
+  justify-self: end;
 }
 
 .action-button-icon {
@@ -67,7 +74,7 @@
 .face-description {
   user-select: none;
   position: absolute;
-  max-width: 10ch;
+  max-width: 17ch;
   top: 50%;
   font-size: 1.2rem;
   right: 1%;
