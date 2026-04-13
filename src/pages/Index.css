@@ -1,0 +1,148 @@
+/* Index page — Professional & Modern Styling */
+
+.rotating-text-container {
+  background-color: hsl(var(--primary) / 0.08);
+  @apply border rounded-2xl;
+  border-color: hsl(var(--primary) / 0.15);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  position: relative;
+  overflow: hidden;
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, transparent 100%);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.04),
+    inset 1px 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.rotating-text-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.02) 100%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.rotating-text-container:hover {
+  background-color: hsl(var(--primary) / 0.12);
+  border-color: hsl(var(--primary) / 0.25);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    inset 1px 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.rotating-text {
+  @apply text-foreground font-semibold;
+  font-size: 1.1rem;
+  letter-spacing: -0.5px;
+}
+
+.name-typography {
+  @apply text-foreground font-bold;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -2px;
+  font-weight: 800;
+  background: linear-gradient(135deg, hsl(var(--foreground)), hsl(var(--foreground) / 0.85));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.description-text {
+  @apply text-muted-foreground;
+  font-size: 1rem;
+  line-height: 1.7;
+  letter-spacing: 0.3px;
+  font-weight: 300;
+}
+
+.stat-section {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  background-color: hsl(var(--secondary) / 0.4);
+  @apply border rounded-xl px-4 py-3;
+  border-color: hsl(var(--border) / 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.stat-item:hover {
+  background-color: hsl(var(--secondary) / 0.6);
+  border-color: hsl(var(--border) / 0.6);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.stat-value {
+  @apply text-primary font-bold;
+  font-size: 1.5rem;
+  letter-spacing: -0.5px;
+}
+
+.stat-label {
+  @apply text-muted-foreground text-sm;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.cursor-dot {
+  @apply bg-primary;
+  box-shadow: 
+    0 0 16px hsl(var(--primary) / 0.6),
+    0 0 32px hsl(var(--primary) / 0.3);
+}
+
+.sparkles-icon {
+  @apply text-primary;
+  font-size: 1.25rem;
+  filter: drop-shadow(0 0 4px hsl(var(--primary) / 0.4));
+}
+
+/* Hero Section */
+.hero-section {
+  @apply py-12 sm:py-16 lg:py-20;
+}
+
+.cta-button-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+/* Section Headers */
+.section-header {
+  @apply mb-8 sm:mb-12;
+}
+
+.section-title {
+  @apply text-foreground font-bold mb-2;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+}
+
+.section-subtitle {
+  @apply text-muted-foreground;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+.section-divider {
+  @apply h-px bg-gradient-to-r from-border via-border to-transparent;
+  margin: 2rem 0;
+}
