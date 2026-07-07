@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { motion, useScroll, useTransform, AnimatePresence, useInView } from 'framer-motion';
-import { ArrowRight, Sparkles, User, Brain, Briefcase, Mail, ChevronRight, Award, Mic, Users, FolderOpen } from 'lucide-react';
+import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -8,8 +8,9 @@ import { Badge } from '@/components/ui/badge';
 import { PageLayout } from '@/components/PageLayout';
 import { useState, useEffect, useRef } from 'react';
 import ProfileCard from '@/components/ProfileCard/ProfileCard';
-import { experiences } from '@/data/experiences';
+import { experiences, categoryIcons } from '@/data/experiences';
 import './Index.css';
+
 
 const RotatingText = ({ texts = [], rotationInterval = 3000 }: { texts: string[]; rotationInterval?: number }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -64,11 +65,12 @@ const AboutPreview = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}>
           <div className="flex items-center justify-center gap-3 mb-4">
-            <User className="w-8 h-8 text-primary" />
+            <Icon icon="lucide:user" className="w-8 h-8 text-primary" />
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">About Me</h2>
           </div>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Get to know me better</p>
         </motion.div>
+
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div className="order-2 lg:order-1" initial={{ opacity: 0, x: -30 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ delay: 0.2, duration: 0.6 }}>
@@ -83,8 +85,9 @@ const AboutPreview = () => {
             <Link to="/about">
               <Button className="primary-button">
                 Learn More About Me
-                <ChevronRight className="ml-2 w-4 h-4" />
+                <Icon icon="lucide:chevron-right" className="ml-2 w-4 h-4" />
               </Button>
+
             </Link>
           </motion.div>
           <motion.div className="order-1 lg:order-2 flex justify-center" initial={{ opacity: 0, x: 30 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ delay: 0.3, duration: 0.6 }}>
