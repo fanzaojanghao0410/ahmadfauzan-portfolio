@@ -303,7 +303,7 @@ const Index = () => {
                   </Button>
 
                 </Link>
-                <a href="https://drive.google.com/file/d/1fFvi-j3rT1jMHCscybAsZkBk-lUyE0nt/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                <a href="https://drive.google.com/file/d/1L2T7qBPcMi-OD2wxa7pENW-Gs322s8QH/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">
                   <Button size="lg" variant="outline" className="outline-button px-8 py-6 text-base md:text-lg rounded-xl font-semibold">
                     Download CV
                   </Button>
