@@ -5,8 +5,10 @@ export interface Experience {
   shortDesc: string;
   fullDesc: string;
   category: 'event' | 'committee' | 'competition' | 'performance';
+  image: string;
 }
 
+// Stock photos from Unsplash matched to each experience title
 export const experiences: Experience[] = [
   {
     id: 'exp-1',
@@ -14,7 +16,8 @@ export const experiences: Experience[] = [
     title: 'Novel Writing Project - "Dimensi Terakhir"',
     shortDesc: 'Writing and publishing an original novel in Indonesian',
     fullDesc: 'Currently developing and publishing an original novel titled "Dimensi Terakhir", showcasing narrative depth and character development. This project demonstrates creative writing skills, storytelling ability, and commitment to literary arts.',
-    category: 'performance'
+    category: 'performance',
+    image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&q=80&auto=format&fit=crop',
   },
   {
     id: 'exp-2',
@@ -22,7 +25,8 @@ export const experiences: Experience[] = [
     title: 'Frontend Developer - Portfolio Website',
     shortDesc: 'Building a modern, interactive portfolio with React and TypeScript',
     fullDesc: 'Designed and developed this personal portfolio website using React, TypeScript, Tailwind CSS, and Framer Motion. The project showcases web development skills, UI/UX design sensibility, and ability to create engaging user experiences with smooth animations.',
-    category: 'event'
+    category: 'event',
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80&auto=format&fit=crop',
   },
   {
     id: 'exp-3',
@@ -30,7 +34,8 @@ export const experiences: Experience[] = [
     title: 'Visual Identity Design - School Event',
     shortDesc: 'Creating cohesive visual branding for school events',
     fullDesc: 'Designed comprehensive visual identity systems for school events including logos, color palettes, and promotional materials. This work demonstrates expertise in visual design, brand consistency, and understanding of design principles.',
-    category: 'event'
+    category: 'event',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b8?w=800&q=80&auto=format&fit=crop',
   },
   {
     id: 'exp-4',
@@ -38,7 +43,8 @@ export const experiences: Experience[] = [
     title: 'MC & Moderator - New Student Orientation',
     shortDesc: 'Hosted and moderated the new student orientation event',
     fullDesc: 'Served as Master of Ceremony and moderator for the school\'s new student orientation program. Demonstrated performance skills, public speaking ability, and stage presence while welcoming and engaging with audiences.',
-    category: 'event'
+    category: 'event',
+    image: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&q=80&auto=format&fit=crop',
   },
   {
     id: 'exp-5',
@@ -46,7 +52,8 @@ export const experiences: Experience[] = [
     title: 'MHSWR 2026 Registration Committee',
     shortDesc: 'Committee member for student registration process',
     fullDesc: 'Active member of the MHSWR 2026 registration committee, organizing and managing registration processes. Contributes to event planning and coordination with attention to detail and efficiency.',
-    category: 'committee'
+    category: 'committee',
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80&auto=format&fit=crop',
   },
   {
     id: 'exp-6',
@@ -54,7 +61,8 @@ export const experiences: Experience[] = [
     title: 'Committee Member - Mahes of Creativity Vol. 2',
     shortDesc: 'Organizing creative talent showcase event',
     fullDesc: 'Participated as committee member in organizing Mahes of Creativity Vol. 2, a showcase of student talents in performing arts, visual arts, and digital media—aligning perfectly with creative pursuits.',
-    category: 'event'
+    category: 'event',
+    image: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80&auto=format&fit=crop',
   },
   {
     id: 'exp-7',
@@ -62,7 +70,8 @@ export const experiences: Experience[] = [
     title: 'AI & Digital Business Mindset Workshop',
     shortDesc: 'Attended workshop on AI and digital entrepreneurship',
     fullDesc: 'Participated in intensive workshop on artificial intelligence applications and digital business strategies, gaining insights into technology trends and digital innovation—essential for frontend development and creative tech.',
-    category: 'event'
+    category: 'event',
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80&auto=format&fit=crop',
   },
   {
     id: 'exp-8',
@@ -70,7 +79,8 @@ export const experiences: Experience[] = [
     title: 'MC - MetshooFest Vol. 1',
     shortDesc: 'Hosted the inaugural cultural festival event',
     fullDesc: 'Served as Master of Ceremony for MetshooFest Vol. 1, the school\'s premier cultural festival. Demonstrated performance excellence, audience engagement, and ability to coordinate cultural events.',
-    category: 'event'
+    category: 'event',
+    image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80&auto=format&fit=crop',
   },
   {
     id: 'exp-9',
@@ -78,7 +88,8 @@ export const experiences: Experience[] = [
     title: 'School Ambassador (2nd Runner-Up)',
     shortDesc: 'Selected as school ambassador representing student body',
     fullDesc: 'Achieved 2nd Runner-Up position in the school ambassador competition, representing the school at various events. This recognizes leadership, charisma, and ability to represent brand and community effectively.',
-    category: 'competition'
+    category: 'competition',
+    image: 'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=800&q=80&auto=format&fit=crop',
   },
   {
     id: 'exp-10',
@@ -86,7 +97,8 @@ export const experiences: Experience[] = [
     title: 'Performer - Monologue "Runtuh"',
     shortDesc: 'Performed dramatic monologue at Maheswara/i event',
     fullDesc: 'Delivered a powerful and emotionally nuanced monologue titled "Runtuh" at the Maheswara/i "Nusantara Berbakat" event. This performance showcased acting skills, emotional depth, and stage presence.',
-    category: 'performance'
+    category: 'performance',
+    image: 'https://images.unsplash.com/photo-1503095396549-807759245b35?w=800&q=80&auto=format&fit=crop',
   },
   {
     id: 'exp-11',
@@ -94,7 +106,8 @@ export const experiences: Experience[] = [
     title: 'Actor - "Shiap Bos" Short Film',
     shortDesc: 'Acted in student short film production',
     fullDesc: 'Participated as talent in "Shiap Bos," a student-led short film exploring themes of ambition and entrepreneurship. Gained practical experience in film acting and character portrayal.',
-    category: 'performance'
+    category: 'performance',
+    image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&q=80&auto=format&fit=crop',
   },
   {
     id: 'exp-12',
@@ -102,6 +115,15 @@ export const experiences: Experience[] = [
     title: 'Class Chairman (X – IT)',
     shortDesc: 'Elected as class leader for IT department',
     fullDesc: 'Elected as Class Chairman for grade X IT program, coordinating class activities and representing classmates. This leadership role demonstrates organizational skills and community engagement.',
-    category: 'committee'
+    category: 'committee',
+    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80&auto=format&fit=crop',
   }
 ];
+
+// Iconify icon per category
+export const categoryIcons: Record<Experience['category'], string> = {
+  event: 'lucide:mic',
+  committee: 'lucide:users',
+  competition: 'lucide:award',
+  performance: 'lucide:drama',
+};
