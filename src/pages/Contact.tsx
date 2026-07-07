@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Github, Instagram, Linkedin, Send, MapPin, MessageCircle } from 'lucide-react';
+import { Icon } from '@iconify/react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -16,17 +16,17 @@ const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
   const socialLinks = [
-    { icon: Github, label: 'GitHub', href: 'https://github.com/fanzaojanghao0410', color: 'hover:text-foreground' },
-    { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/aahmd.fznn', color: 'hover:text-foreground' },
-    { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com', color: 'hover:text-foreground' },
-    { icon: Mail, label: 'Gmail', href: 'mailto:fanzaojanghao@gmail.com', color: 'hover:text-foreground' },
-    { icon: MessageCircle, label: 'WhatsApp', href: 'https://wa.me/6281234567890', color: 'hover:text-foreground' },
+    { icon: 'mdi:github', label: 'GitHub', href: 'https://github.com/fanzaojanghao0410' },
+    { icon: 'mdi:instagram', label: 'Instagram', href: 'https://www.instagram.com/aahmd.fznn' },
+    { icon: 'mdi:linkedin', label: 'LinkedIn', href: 'https://linkedin.com' },
+    { icon: 'mdi:gmail', label: 'Gmail', href: 'mailto:fanzaojanghao@gmail.com' },
+    { icon: 'mdi:whatsapp', label: 'WhatsApp', href: 'https://wa.me/6281234567890' },
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
-      toast({ title: "Missing Information", description: "Please fill in all fields", variant: "destructive" });
+      toast({ title: 'Missing Information', description: 'Please fill in all fields', variant: 'destructive' });
       return;
     }
     setIsSubmitting(true);
@@ -34,15 +34,24 @@ const Contact = () => {
       const response = await fetch('https://formsubmit.co/ajax/fanzaojanghao@gmail.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ name: formData.name, email: formData.email, message: formData.message, _subject: `Portfolio Contact: ${formData.name}` }),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: `Portfolio Contact: ${formData.name}`,
+        }),
       });
       if (response.ok) {
-        toast({ title: "Message Sent! ✉️", description: "Thank you for reaching out. I'll get back to you soon." });
+        toast({ title: 'Message Sent! ✉️', description: "Thank you for reaching out. I'll get back to you soon." });
         setFormData({ name: '', email: '', message: '' });
-      } else { throw new Error('Failed'); }
+      } else {
+        throw new Error('Failed');
+      }
     } catch {
-      toast({ title: "Failed to Send", description: "Please try again or email me directly.", variant: "destructive" });
-    } finally { setIsSubmitting(false); }
+      toast({ title: 'Failed to Send', description: 'Please try again or email me directly.', variant: 'destructive' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -56,7 +65,6 @@ const Contact = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Form */}
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}>
               <Card className="glass-card p-8">
                 <h2 className="text-2xl font-bold mb-6 text-foreground">Send a Message</h2>
@@ -75,29 +83,28 @@ const Contact = () => {
                   </div>
                   <Button type="submit" className="w-full primary-button" disabled={isSubmitting}>
                     {isSubmitting ? (
-                      <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full" />
+                      <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }} className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full" />
                     ) : (
-                      <>Send Message <Send className="ml-2 w-4 h-4" /></>
+                      <>Send Message <Icon icon="lucide:send" className="ml-2 w-4 h-4" /></>
                     )}
                   </Button>
                 </form>
               </Card>
             </motion.div>
 
-            {/* Info */}
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }} className="space-y-6">
               <Card className="glass-card p-6">
                 <h3 className="text-xl font-bold mb-4 text-foreground">Contact Information</h3>
                 <div className="space-y-4">
                   <div className="flex items-center gap-4">
-                    <div className="p-2 rounded-lg bg-primary/10"><MapPin className="w-5 h-5 text-primary" /></div>
+                    <div className="p-2 rounded-lg bg-primary/10"><Icon icon="lucide:map-pin" className="w-5 h-5 text-primary" /></div>
                     <div>
                       <p className="font-medium text-foreground">Location</p>
                       <p className="text-sm text-muted-foreground">Bekasi, Indonesia</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="p-2 rounded-lg bg-primary/10"><Mail className="w-5 h-5 text-primary" /></div>
+                    <div className="p-2 rounded-lg bg-primary/10"><Icon icon="lucide:mail" className="w-5 h-5 text-primary" /></div>
                     <div>
                       <p className="font-medium text-foreground">Email</p>
                       <p className="text-sm text-muted-foreground">fanzaojanghao@gmail.com</p>
@@ -110,9 +117,16 @@ const Contact = () => {
                 <h3 className="text-xl font-bold mb-4 text-foreground">Connect With Me</h3>
                 <div className="grid grid-cols-2 gap-3">
                   {socialLinks.map((social) => (
-                    <motion.a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-                      className={`flex items-center gap-3 p-3 rounded-lg transition-all text-muted-foreground ${social.color} bg-muted/50 border border-border/50 hover:border-border`}>
-                      <social.icon className="w-5 h-5" />
+                    <motion.a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="flex items-center gap-3 p-3 rounded-lg transition-all text-muted-foreground hover:text-foreground bg-muted/50 border border-border/50 hover:border-border"
+                    >
+                      <Icon icon={social.icon} className="w-5 h-5" />
                       <span className="font-medium text-sm">{social.label}</span>
                     </motion.a>
                   ))}

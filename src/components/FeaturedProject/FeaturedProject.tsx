@@ -1,8 +1,9 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, ExternalLink, Play } from 'lucide-react';
+import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
+
 
 const FeaturedProject: React.FC = () => {
   return (
@@ -83,7 +84,7 @@ const FeaturedProject: React.FC = () => {
                   >
                     <span className="flex items-center justify-center gap-2">
                       View Code
-                      <ExternalLink className="w-4 h-4 transition-transform group-hover/btn:scale-110" />
+                      <Icon icon="lucide:external-link" className="w-4 h-4 transition-transform group-hover/btn:scale-110" />
                     </span>
                   </Button>
                 </a>
@@ -143,7 +144,7 @@ const FeaturedProject: React.FC = () => {
                 >
                   <span className="flex items-center justify-center gap-2">
                     Learn More
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                    <Icon icon="lucide:arrow-right" className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                   </span>
                 </Button>
               </div>

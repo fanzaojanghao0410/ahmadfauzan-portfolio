@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { motion, useScroll, useTransform, AnimatePresence, useInView } from 'framer-motion';
-import { ArrowRight, Sparkles, User, Brain, Briefcase, Mail, ChevronRight, Award, Mic, Users, FolderOpen } from 'lucide-react';
+import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -8,8 +8,9 @@ import { Badge } from '@/components/ui/badge';
 import { PageLayout } from '@/components/PageLayout';
 import { useState, useEffect, useRef } from 'react';
 import ProfileCard from '@/components/ProfileCard/ProfileCard';
-import { experiences } from '@/data/experiences';
+import { experiences, categoryIcons } from '@/data/experiences';
 import './Index.css';
+
 
 const RotatingText = ({ texts = [], rotationInterval = 3000 }: { texts: string[]; rotationInterval?: number }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -64,11 +65,12 @@ const AboutPreview = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}>
           <div className="flex items-center justify-center gap-3 mb-4">
-            <User className="w-8 h-8 text-primary" />
+            <Icon icon="lucide:user" className="w-8 h-8 text-primary" />
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">About Me</h2>
           </div>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Get to know me better</p>
         </motion.div>
+
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div className="order-2 lg:order-1" initial={{ opacity: 0, x: -30 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ delay: 0.2, duration: 0.6 }}>
@@ -83,8 +85,9 @@ const AboutPreview = () => {
             <Link to="/about">
               <Button className="primary-button">
                 Learn More About Me
-                <ChevronRight className="ml-2 w-4 h-4" />
+                <Icon icon="lucide:chevron-right" className="ml-2 w-4 h-4" />
               </Button>
+
             </Link>
           </motion.div>
           <motion.div className="order-1 lg:order-2 flex justify-center" initial={{ opacity: 0, x: 30 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ delay: 0.3, duration: 0.6 }}>
@@ -112,10 +115,10 @@ const SkillsPreview = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const previewSkills = [
-    { title: "Visual Design", icon: "🎨" },
-    { title: "Novel Writing", icon: "✍️" },
-    { title: "Frontend Dev", icon: "💻" },
-    { title: "Performance Art", icon: "🎭" },
+    { title: 'Visual Design', icon: 'lucide:palette' },
+    { title: 'Novel Writing', icon: 'lucide:book-open' },
+    { title: 'Frontend Dev', icon: 'lucide:code-2' },
+    { title: 'Performance Art', icon: 'lucide:drama' },
   ];
 
   return (
@@ -123,12 +126,12 @@ const SkillsPreview = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}>
           <div className="flex items-center justify-center gap-3 mb-4">
-            <Brain className="w-8 h-8 text-primary" />
+            <Icon icon="lucide:brain" className="w-8 h-8 text-primary" />
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">Skills & Expertise</h2>
           </div>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Technical proficiency meets interpersonal abilities</p>
         </motion.div>
-        
+
         <div className="flex flex-wrap justify-center gap-6 mb-12">
           {previewSkills.map((skill, index) => (
             <motion.div
@@ -139,17 +142,17 @@ const SkillsPreview = () => {
               whileHover={{ scale: 1.05, y: -4 }}
             >
               <Card className="glass-card w-32 h-32 flex flex-col items-center justify-center text-center p-4">
-                <div className="text-2xl mb-3">{skill.icon}</div>
+                <Icon icon={skill.icon} className="w-8 h-8 mb-3 text-primary" />
                 <p className="text-sm font-medium text-foreground">{skill.title}</p>
               </Card>
             </motion.div>
           ))}
         </div>
-        
+
         <div className="flex justify-center">
           <Link to="/skills">
             <Button className="primary-button">
-              View All Skills <ChevronRight className="ml-2 w-4 h-4" />
+              View All Skills <Icon icon="lucide:chevron-right" className="ml-2 w-4 h-4" />
             </Button>
           </Link>
         </div>
@@ -158,20 +161,19 @@ const SkillsPreview = () => {
   );
 };
 
+
 // Experience Preview
 const ExperiencePreview = () => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: '-100px' });
   const featuredExperiences = experiences.slice(0, 3);
-
-  const categoryIcons = { event: Mic, committee: Users, competition: Award, performance: Mic };
 
   return (
     <section ref={ref} className="py-24 md:py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}>
           <div className="flex items-center justify-center gap-3 mb-4">
-            <Briefcase className="w-8 h-8 text-primary" />
+            <Icon icon="lucide:briefcase" className="w-8 h-8 text-primary" />
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">Recent Experience</h2>
           </div>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Leadership, creativity, and continuous growth</p>
@@ -179,7 +181,7 @@ const ExperiencePreview = () => {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {featuredExperiences.map((exp, index) => {
-            const Icon = categoryIcons[exp.category];
+            const iconName = categoryIcons[exp.category];
             return (
               <motion.div
                 key={exp.id}
@@ -189,8 +191,16 @@ const ExperiencePreview = () => {
                 whileHover={{ y: -6 }}
               >
                 <Card className="glass-card overflow-hidden h-full group">
-                  <div className="w-full h-48 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-                    <Icon className="w-16 h-16 text-primary/40 group-hover:text-primary/60 transition-colors" />
+                  <div className="w-full h-48 overflow-hidden relative">
+                    <img
+                      src={exp.image}
+                      alt={exp.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div className="absolute top-3 right-3 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center">
+                      <Icon icon={iconName} className="w-5 h-5 text-primary" />
+                    </div>
                   </div>
                   <div className="p-5">
                     <div className="flex items-center gap-2 mb-3">
@@ -209,7 +219,7 @@ const ExperiencePreview = () => {
         <div className="flex justify-center">
           <Link to="/experience">
             <Button className="primary-button">
-              View All Experience <ChevronRight className="ml-2 w-4 h-4" />
+              View All Experience <Icon icon="lucide:chevron-right" className="ml-2 w-4 h-4" />
             </Button>
           </Link>
         </div>
@@ -217,6 +227,7 @@ const ExperiencePreview = () => {
     </section>
   );
 };
+
 
 // Contact Preview
 const ContactPreview = () => {
@@ -228,17 +239,18 @@ const ContactPreview = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}>
           <Card className="glass-card p-8 md:p-16 text-center">
-            <Mail className="w-12 h-12 mx-auto mb-6 text-primary" />
+            <Icon icon="lucide:mail" className="w-12 h-12 mx-auto mb-6 text-primary" />
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Let's Work Together</h2>
             <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
               Have a project in mind or want to collaborate? I'd love to hear from you.
             </p>
             <Link to="/contact">
               <Button className="primary-button">
-                Get In Touch <Mail className="ml-2 w-4 h-4" />
+                Get In Touch <Icon icon="lucide:mail" className="ml-2 w-4 h-4" />
               </Button>
             </Link>
           </Card>
+
         </motion.div>
       </div>
     </section>
@@ -287,8 +299,9 @@ const Index = () => {
                 <Link to="/projects">
                   <Button size="lg" className="primary-button px-8 py-6 text-base md:text-lg rounded-xl font-semibold">
                     Explore My Work
-                    <ArrowRight className="ml-2 w-5 h-5" />
+                    <Icon icon="lucide:arrow-right" className="ml-2 w-5 h-5" />
                   </Button>
+
                 </Link>
                 <a href="https://drive.google.com/file/d/1fFvi-j3rT1jMHCscybAsZkBk-lUyE0nt/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                   <Button size="lg" variant="outline" className="outline-button px-8 py-6 text-base md:text-lg rounded-xl font-semibold">
