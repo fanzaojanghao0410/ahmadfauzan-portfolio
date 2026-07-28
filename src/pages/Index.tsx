@@ -267,10 +267,24 @@ const ContactPreview = () => {
 const Index = () => {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  const navigate = useNavigate();
+  const clickRef = useRef<{ count: number; timer: any }>({ count: 0, timer: null });
+
+  const handleSecretClick = () => {
+    clickRef.current.count += 1;
+    if (clickRef.current.timer) clearTimeout(clickRef.current.timer);
+    if (clickRef.current.count >= 3) {
+      clickRef.current.count = 0;
+      navigate("/portal");
+      return;
+    }
+    clickRef.current.timer = setTimeout(() => { clickRef.current.count = 0; }, 600);
+  };
 
   const name = "Ahmad Fauzan";
   const rotatingTexts = ["creating", "designing", "writing", "performing"];
   const description = "A creative visionary blending visual design, storytelling, performance art, and cutting-edge technology into compelling digital experiences.";
+
 
   return (
     <PageLayout>
@@ -286,9 +300,10 @@ const Index = () => {
               </motion.div>
 
               {/* Name */}
-              <motion.h1 variants={itemVariants} className="name-typography text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4 tracking-tighter">
+              <motion.h1 variants={itemVariants} onClick={handleSecretClick} className="name-typography text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4 tracking-tighter select-none cursor-default">
                 {name}
               </motion.h1>
+
               
               {/* Rotating text */}
               <motion.div variants={itemVariants} className="mb-10 flex flex-col sm:flex-row justify-center items-center gap-2">
