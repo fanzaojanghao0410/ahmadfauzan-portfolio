@@ -16,6 +16,8 @@ import Experience from "./pages/Experience";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import AdminPortal from "./pages/AdminPortal";
+import AdminDashboard from "./pages/AdminDashboard";
 
 const queryClient = new QueryClient();
 
@@ -28,21 +30,29 @@ const App = () => {
           <Sonner />
           <BrowserRouter>
             <ScrollToTop />
-            <div className="relative min-h-screen w-full flex overflow-hidden">
-              <Particles />
-              <Sidebar />
-              <main className="flex-1 relative z-10">
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/skills" element={<Skills />} />
-                  <Route path="/experience" element={<Experience />} />
-                  <Route path="/projects" element={<Projects />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </main>
-            </div>
+            <Routes>
+              <Route path="/portal" element={<AdminPortal />} />
+              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="*" element={
+                <div className="relative min-h-screen w-full flex overflow-hidden">
+                  <Particles />
+                  <Sidebar />
+                  <main className="flex-1 relative z-10">
+                    <Routes>
+                      <Route path="/" element={<Index />} />
+                      <Route path="/about" element={<About />} />
+                      <Route path="/skills" element={<Skills />} />
+                      <Route path="/experience" element={<Experience />} />
+                      <Route path="/projects" element={<Projects />} />
+                      <Route path="/contact" element={<Contact />} />
+                      <Route path="*" element={<NotFound />} />
+                    </Routes>
+                  </main>
+                </div>
+              } />
+            </Routes>
+          </BrowserRouter>
+
           </BrowserRouter>
         </TooltipProvider>
       </ThemeProvider>
