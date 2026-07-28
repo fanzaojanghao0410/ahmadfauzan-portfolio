@@ -6,10 +6,14 @@ import { PageLayout } from '@/components/PageLayout';
 import ProfileCard from '@/components/ProfileCard/ProfileCard';
 import { Badge } from '@/components/ui/badge';
 import { useRef } from 'react';
+import { useSiteProfile } from '@/hooks/useSiteData';
+
 
 const About = () => {
   const contentRef = useRef(null);
   const inView = useInView(contentRef, { once: true, margin: '-100px' });
+  const { data: profile } = useSiteProfile();
+
 
   const personalDetails = [
     { icon: 'lucide:user', label: 'Name', value: 'Ahmad Fauzan' },
@@ -61,7 +65,7 @@ const About = () => {
                   handle="ahmadfauzan"
                   status="Online"
                   contactText="Contact Me"
-                  avatarUrl="/profile1.png"
+                  avatarUrl={profile?.about_photo_url || "/profile1.png"}
                   showUserInfo={true}
                   enableTilt={true}
                   enableMobileTilt={false}

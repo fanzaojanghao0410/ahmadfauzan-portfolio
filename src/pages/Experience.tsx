@@ -5,7 +5,9 @@ import { Icon } from '@iconify/react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { PageLayout } from '@/components/PageLayout';
-import { experiences, categoryIcons } from '@/data/experiences';
+import { categoryIcons } from '@/data/experiences';
+import { useExperiences } from '@/hooks/useSiteData';
+
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -21,6 +23,8 @@ const Experience = () => {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const containerRef = useRef(null);
   const containerInView = useInView(containerRef, { once: true, margin: '-100px' });
+  const { data: experiences } = useExperiences();
+
 
   const toggleExpand = (id: string) => {
     setExpandedId(expandedId === id ? null : id);
@@ -82,7 +86,7 @@ const Experience = () => {
 
                           <CardContent className="flex-1 flex flex-col pb-3 px-0">
                             <p className="text-sm text-muted-foreground mb-3 line-clamp-3 flex-1">
-                              {exp.shortDesc}
+                              {exp.short_desc}
                             </p>
                             <button
                               onClick={() => toggleExpand(exp.id)}
@@ -109,7 +113,7 @@ const Experience = () => {
                       >
                         <div className="px-6 py-3 bg-muted/20">
                           <p className="text-xs leading-relaxed text-foreground/80">
-                            {exp.fullDesc}
+                            {exp.full_desc}
                           </p>
                         </div>
                       </motion.div>
