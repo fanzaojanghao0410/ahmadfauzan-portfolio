@@ -53,7 +53,6 @@ const App = () => {
             </Routes>
           </BrowserRouter>
 
-          </BrowserRouter>
         </TooltipProvider>
       </ThemeProvider>
     </QueryClientProvider>
