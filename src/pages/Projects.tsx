@@ -47,7 +47,7 @@ const Projects = () => {
                       <Icon icon={project.icon} className="w-6 h-6 text-primary" />
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className={`w-2 h-2 rounded-full ${project.statusColor}`} />
+                      <div className={`w-2 h-2 rounded-full ${project.status_color}`} />
                       <span className="text-xs font-medium text-muted-foreground">{project.status}</span>
                     </div>
                   </div>
