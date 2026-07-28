@@ -8,7 +8,10 @@ import { Badge } from '@/components/ui/badge';
 import { PageLayout } from '@/components/PageLayout';
 import { useState, useEffect, useRef } from 'react';
 import ProfileCard from '@/components/ProfileCard/ProfileCard';
-import { experiences, categoryIcons } from '@/data/experiences';
+import { categoryIcons } from '@/data/experiences';
+import { useExperiences, useSiteProfile } from '@/hooks/useSiteData';
+import { useNavigate } from 'react-router-dom';
+
 import './Index.css';
 
 
@@ -59,6 +62,8 @@ const itemVariants = {
 const AboutPreview = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const { data: profile } = useSiteProfile();
+
 
   return (
     <section ref={ref} className="py-24 md:py-32">
@@ -97,7 +102,7 @@ const AboutPreview = () => {
               handle="ahmadfauzan"
               status="Online"
               contactText="Contact Me"
-              avatarUrl="/profile1.png"
+              avatarUrl={profile?.hero_photo_url || "/profile1.png"}
               showUserInfo={true}
               enableTilt={true}
               enableMobileTilt={false}
@@ -166,7 +171,9 @@ const SkillsPreview = () => {
 const ExperiencePreview = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
+  const { data: experiences } = useExperiences();
   const featuredExperiences = experiences.slice(0, 3);
+
 
   return (
     <section ref={ref} className="py-24 md:py-32">
@@ -208,7 +215,7 @@ const ExperiencePreview = () => {
                       <span className="text-xs text-muted-foreground">{exp.date}</span>
                     </div>
                     <h3 className="text-lg font-semibold text-foreground mb-2">{exp.title}</h3>
-                    <p className="text-sm text-muted-foreground">{exp.shortDesc}</p>
+                    <p className="text-sm text-muted-foreground">{exp.short_desc}</p>
                   </div>
                 </Card>
               </motion.div>
