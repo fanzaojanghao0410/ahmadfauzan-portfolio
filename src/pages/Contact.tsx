@@ -17,10 +17,10 @@ const Contact = () => {
 
   const socialLinks = [
     { icon: 'mdi:github', label: 'GitHub', href: 'https://github.com/fanzaojanghao0410' },
-    { icon: 'mdi:instagram', label: 'Instagram', href: 'https://www.instagram.com/aahmd.fznn' },
+    { icon: 'mdi:instagram', label: 'Instagram', href: 'https://www.instagram.com/0jan.md' },
     { icon: 'mdi:linkedin', label: 'LinkedIn', href: 'https://linkedin.com' },
     { icon: 'mdi:gmail', label: 'Gmail', href: 'mailto:fanzaojanghao@gmail.com' },
-    { icon: 'mdi:whatsapp', label: 'WhatsApp', href: 'https://wa.me/6281234567890' },
+    { icon: 'mdi:whatsapp', label: 'WhatsApp', href: 'https://wa.me/62881027256029' },
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
