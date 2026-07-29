@@ -11,9 +11,9 @@ import { Icon } from "@iconify/react";
 
 export default function AdminPortal() {
   const nav = useNavigate();
-  const [mode, setMode] = useState<"signin" | "setup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPw, setShowPw] = useState(false);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -32,53 +32,87 @@ export default function AdminPortal() {
     nav("/admin", { replace: true });
   };
 
-  const handleSetup = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    const { data, error } = await supabase.functions.invoke("admin-setup", { body: { email, password } });
-    if (error || (data as any)?.error) {
-      setLoading(false);
-      return toast.error((data as any)?.error ?? error?.message ?? "Setup failed");
-    }
-    const { error: siErr } = await supabase.auth.signInWithPassword({ email, password });
-    setLoading(false);
-    if (siErr) return toast.error(siErr.message);
-    toast.success("Admin account created");
-    nav("/admin", { replace: true });
-  };
-
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-background">
-      <Card className="glass-card p-8 w-full max-w-md">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-            <Icon icon="lucide:shield" className="w-5 h-5 text-primary" />
+    <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 bg-background relative overflow-hidden">
+      {/* Ambient background */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-primary/20 blur-3xl" />
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-primary/10 blur-3xl" />
+      </div>
+
+      <Card className="glass-effect w-full max-w-md p-6 sm:p-8 rounded-2xl shadow-card">
+        <div className="flex flex-col items-center text-center mb-6">
+          <div className="w-14 h-14 rounded-2xl bg-primary/15 flex items-center justify-center mb-3">
+            <Icon icon="lucide:shield-check" className="w-7 h-7 text-primary" />
           </div>
-          <div>
-            <h1 className="text-xl font-bold">Admin Portal</h1>
-            <p className="text-xs text-muted-foreground">{mode === "signin" ? "Sign in to manage content" : "First-time setup"}</p>
-          </div>
+          <h1 className="text-2xl font-bold">Admin Portal</h1>
+          <p className="text-sm text-muted-foreground mt-1">Sign in to manage your portfolio</p>
         </div>
-        <form onSubmit={mode === "signin" ? handleSignIn : handleSetup} className="space-y-4">
-          <div>
+
+        <form onSubmit={handleSignIn} className="space-y-4">
+          <div className="space-y-1.5">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+            <div className="relative">
+              <Icon icon="lucide:mail" className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                id="email"
+                type="email"
+                required
+                autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="pl-9 h-11"
+                placeholder="you@example.com"
+              />
+            </div>
           </div>
-          <div>
+
+          <div className="space-y-1.5">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" required minLength={8} value={password} onChange={(e) => setPassword(e.target.value)} />
+            <div className="relative">
+              <Icon icon="lucide:lock" className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                id="password"
+                type={showPw ? "text" : "password"}
+                required
+                minLength={8}
+                autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="pl-9 pr-10 h-11"
+                placeholder="••••••••"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPw((s) => !s)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                aria-label="Toggle password visibility"
+              >
+                <Icon icon={showPw ? "lucide:eye-off" : "lucide:eye"} className="w-4 h-4" />
+              </button>
+            </div>
           </div>
-          <Button type="submit" disabled={loading} className="w-full primary-button">
-            {loading ? "Please wait..." : mode === "signin" ? "Sign In" : "Create Admin"}
+
+          <Button type="submit" disabled={loading} className="w-full h-11 primary-button">
+            {loading ? (
+              <span className="flex items-center gap-2">
+                <Icon icon="lucide:loader-2" className="w-4 h-4 animate-spin" /> Signing in…
+              </span>
+            ) : (
+              <span className="flex items-center gap-2">
+                <Icon icon="lucide:log-in" className="w-4 h-4" /> Sign In
+              </span>
+            )}
           </Button>
-          <button
-            type="button"
-            onClick={() => setMode(mode === "signin" ? "setup" : "signin")}
-            className="w-full text-xs text-muted-foreground hover:text-primary"
-          >
-            {mode === "signin" ? "First time? Set up admin" : "Back to sign in"}
-          </button>
         </form>
+
+        <button
+          type="button"
+          onClick={() => nav("/")}
+          className="mt-6 w-full text-xs text-muted-foreground hover:text-primary flex items-center justify-center gap-1"
+        >
+          <Icon icon="lucide:arrow-left" className="w-3 h-3" /> Back to site
+        </button>
       </Card>
     </div>
   );
