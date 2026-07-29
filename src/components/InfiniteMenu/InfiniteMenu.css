@@ -110,7 +110,6 @@
   opacity: 0;
   transition: 0.1s ease;
 }
-}
 
 .action-button.active {
   bottom: 3.8em;
