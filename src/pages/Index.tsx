@@ -290,47 +290,76 @@ const Index = () => {
     <PageLayout>
       <div className="pb-20 lg:pb-0">
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center py-20 md:py-32">
+        <section className="relative min-h-screen flex items-center justify-center py-20 md:py-32 overflow-hidden">
+          {/* Decorative background */}
+          <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+            <div className="absolute inset-0 opacity-[0.35] dark:opacity-25 [background-image:linear-gradient(to_right,hsl(var(--border))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border))_1px,transparent_1px)] [background-size:64px_64px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,black,transparent)]" />
+            <motion.div
+              className="absolute -top-24 left-1/2 -translate-x-1/2 w-[38rem] h-[38rem] rounded-full bg-primary/15 blur-[110px]"
+              animate={{ y: [0, 24, 0], scale: [1, 1.05, 1] }}
+              transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            <motion.div
+              className="absolute bottom-0 -left-20 w-80 h-80 rounded-full bg-accent/20 blur-[100px]"
+              animate={{ y: [0, -30, 0] }}
+              transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            <motion.div
+              className="absolute top-1/3 -right-16 w-72 h-72 rounded-full bg-secondary/20 blur-[100px]"
+              animate={{ y: [0, 28, 0] }}
+              transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
+            />
+          </div>
+
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <motion.div variants={containerVariants} initial="hidden" animate="visible" className="text-center">
               
               {/* Badge */}
-              <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 bg-primary/5 border border-primary/10">
-                <span className="text-sm font-semibold tracking-wide text-foreground">Creative Visionary & Developer</span>
+              <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 bg-primary/5 border border-primary/15 backdrop-blur-sm">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+                </span>
+                <span className="text-sm font-semibold tracking-wide text-foreground">Frontend Developer & Creative Technologist</span>
               </motion.div>
 
               {/* Name */}
-              <motion.h1 variants={itemVariants} onClick={handleSecretClick} className="name-typography text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4 tracking-tighter select-none cursor-default">
+              <motion.p variants={itemVariants} className="text-sm md:text-base uppercase tracking-[0.35em] text-muted-foreground mb-3">
+                Hello, I'm
+              </motion.p>
+              <motion.h1 variants={itemVariants} onClick={handleSecretClick} className="name-typography text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-5 tracking-tighter select-none cursor-default">
                 {name}
               </motion.h1>
 
               
               {/* Rotating text */}
-              <motion.div variants={itemVariants} className="mb-10 flex flex-col sm:flex-row justify-center items-center gap-2">
+              <motion.div variants={itemVariants} className="mb-8 flex flex-col sm:flex-row justify-center items-center gap-2">
                 <span className="font-bold text-xl sm:text-2xl md:text-3xl text-foreground">I'm</span>
                 <RotatingText texts={rotatingTexts} rotationInterval={3200} />
               </motion.div>
 
               {/* Description */}
-              <motion.p variants={itemVariants} className="description-text text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-14 text-muted-foreground font-light">
+              <motion.p variants={itemVariants} className="description-text text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-12 text-muted-foreground font-light">
                 {description}
               </motion.p>
 
               {/* CTA */}
               <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20">
-                <Link to="/projects">
-                  <Button size="lg" className="primary-button px-8 py-6 text-base md:text-lg rounded-xl font-semibold">
+                <Link to="/projects" className="w-full sm:w-auto">
+                  <Button size="lg" className="primary-button w-full sm:w-auto px-8 py-6 text-base md:text-lg rounded-xl font-semibold shadow-glow">
                     Explore My Work
                     <Icon icon="lucide:arrow-right" className="ml-2 w-5 h-5" />
                   </Button>
 
                 </Link>
-                <a href="https://drive.google.com/file/d/1L2T7qBPcMi-OD2wxa7pENW-Gs322s8QH/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">
-                  <Button size="lg" variant="outline" className="outline-button px-8 py-6 text-base md:text-lg rounded-xl font-semibold">
+                <a href="https://drive.google.com/file/d/1L2T7qBPcMi-OD2wxa7pENW-Gs322s8QH/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                  <Button size="lg" variant="outline" className="outline-button w-full sm:w-auto px-8 py-6 text-base md:text-lg rounded-xl font-semibold">
+                    <Icon icon="lucide:download" className="mr-2 w-5 h-5" />
                     Download CV
                   </Button>
                 </a>
               </motion.div>
+
 
               {/* Stats */}
               <motion.div variants={itemVariants} className="grid grid-cols-3 gap-8 max-w-2xl mx-auto pt-12 border-t border-border">
