@@ -316,15 +316,6 @@ const Index = () => {
 
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <motion.div variants={containerVariants} initial="hidden" animate="visible" className="text-center">
-              
-              {/* Badge */}
-              <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 bg-primary/5 border border-primary/15 backdrop-blur-sm">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-                </span>
-                <span className="text-sm font-semibold tracking-wide text-foreground">Frontend Developer & Creative Technologist</span>
-              </motion.div>
 
               {/* Name */}
               <motion.p variants={itemVariants} className="text-sm md:text-base uppercase tracking-[0.35em] text-muted-foreground mb-3">
