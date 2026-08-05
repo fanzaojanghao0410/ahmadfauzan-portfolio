@@ -52,17 +52,22 @@ const Experience = () => {
                 const isExpanded = expandedId === exp.id;
 
                 return (
-                  <motion.div key={exp.id} variants={cardVariants} whileHover={{ y: -4 }}>
-                    <Card className="glass-card h-full flex flex-col overflow-hidden">
+                  <motion.div key={exp.id} variants={cardVariants} whileHover={{ y: -6 }} transition={{ duration: 0.3, ease: 'easeOut' }}>
+                    <Card className="glass-card h-full flex flex-col overflow-hidden transition-smooth hover:border-primary/40 hover:shadow-glow">
                       <div className="flex flex-col md:flex-row">
                         <div className="md:w-1/3 p-4 flex-shrink-0">
-                          <div className="aspect-square rounded-lg overflow-hidden bg-muted">
+                          <div className="aspect-square rounded-xl overflow-hidden bg-muted relative group">
                             <img
                               src={exp.image}
                               alt={`${exp.title} documentation`}
-                              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                               loading="lazy"
                             />
+                            {exp.org_logo && (
+                              <div className="absolute bottom-2 left-2 w-9 h-9 rounded-lg bg-background/85 backdrop-blur-sm border border-border/60 flex items-center justify-center overflow-hidden">
+                                <img src={exp.org_logo} alt={exp.organization ?? 'organization logo'} className="w-full h-full object-contain p-1" loading="lazy" />
+                              </div>
+                            )}
                           </div>
                         </div>
 
@@ -78,16 +83,44 @@ const Experience = () => {
                               <span className="text-xs text-muted-foreground flex items-center gap-1">
                                 <Icon icon="lucide:calendar" className="w-3 h-3" /> {exp.date}
                               </span>
+                              {exp.location && (
+                                <span className="text-xs text-muted-foreground flex items-center gap-1">
+                                  <Icon icon="lucide:map-pin" className="w-3 h-3" /> {exp.location}
+                                </span>
+                              )}
                             </div>
                             <CardTitle className="text-base lg:text-lg text-foreground line-clamp-2">
                               {exp.title}
                             </CardTitle>
+                            {exp.organization && (
+                              <p className="text-xs font-medium text-primary flex items-center gap-1.5">
+                                <Icon icon="lucide:building-2" className="w-3 h-3" /> {exp.organization}
+                              </p>
+                            )}
                           </CardHeader>
 
                           <CardContent className="flex-1 flex flex-col pb-3 px-0">
+                            {exp.roles?.length > 0 && (
+                              <div className="flex flex-wrap gap-1.5 mb-2.5">
+                                {exp.roles.map((r: string) => (
+                                  <Badge key={r} className="text-[10px] font-semibold bg-primary/10 text-primary border border-primary/20 hover:bg-primary/15">
+                                    {r}
+                                  </Badge>
+                                ))}
+                              </div>
+                            )}
                             <p className="text-sm text-muted-foreground mb-3 line-clamp-3 flex-1">
                               {exp.short_desc}
                             </p>
+                            {exp.techs?.length > 0 && (
+                              <div className="flex flex-wrap gap-1.5 mb-3">
+                                {exp.techs.map((t: string) => (
+                                  <Badge key={t} variant="outline" className="text-[10px] font-medium">
+                                    {t}
+                                  </Badge>
+                                ))}
+                              </div>
+                            )}
                             <button
                               onClick={() => toggleExpand(exp.id)}
                               className="text-xs font-semibold text-primary hover:underline flex items-center gap-1 self-start"
@@ -120,6 +153,7 @@ const Experience = () => {
                     </Card>
                   </motion.div>
                 );
+
               })}
             </motion.div>
           </div>
