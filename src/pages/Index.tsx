@@ -9,6 +9,8 @@ import { PageLayout } from '@/components/PageLayout';
 import { useState, useEffect, useRef } from 'react';
 import ProfileCard from '@/components/ProfileCard/ProfileCard';
 import { categoryIcons } from '@/data/experiences';
+import TechStackSection from '@/components/TechStackSection';
+
 import { useExperiences, useSiteProfile } from '@/hooks/useSiteData';
 import { useNavigate } from 'react-router-dom';
 
@@ -282,8 +284,9 @@ const Index = () => {
   };
 
   const name = "Ahmad Fauzan";
-  const rotatingTexts = ["creating", "designing", "writing", "performing"];
-  const description = "A creative visionary blending visual design, storytelling, performance art, and cutting-edge technology into compelling digital experiences.";
+  const rotatingTexts = ["building", "designing", "coding", "creating"];
+  const description = "Frontend Developer & Creative Technologist crafting clean, interactive, and responsive web experiences where design, technology, and creativity meet.";
+
 
 
   return (
@@ -382,9 +385,15 @@ const Index = () => {
         <div className="relative">
           <AboutPreview />
           <SkillsPreview />
+          <section className="py-24 md:py-32">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+              <TechStackSection />
+            </div>
+          </section>
           <ExperiencePreview />
           <ContactPreview />
         </div>
+
       </div>
     </PageLayout>
   );
