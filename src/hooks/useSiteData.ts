@@ -25,7 +25,13 @@ export interface DBExperience {
   category: 'event' | 'committee' | 'competition' | 'performance';
   image: string;
   sort_order: number;
+  roles?: string[];
+  techs?: string[];
+  organization?: string | null;
+  org_logo?: string | null;
+  location?: string | null;
 }
+
 
 export interface SiteProfile {
   id: string;

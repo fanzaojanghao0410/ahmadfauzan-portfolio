@@ -3,6 +3,8 @@ import { Icon } from '@iconify/react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PageLayout } from '@/components/PageLayout';
 import { technicalSkills, softSkills } from '@/data/skills';
+import TechStackSection from '@/components/TechStackSection';
+
 import { useRef } from 'react';
 
 const containerVariants = {
@@ -74,6 +76,11 @@ const Skills = () => {
               ))}
             </motion.div>
           </div>
+
+          <div className="mt-20">
+            <TechStackSection />
+          </div>
+
         </motion.div>
       </div>
     </PageLayout>
