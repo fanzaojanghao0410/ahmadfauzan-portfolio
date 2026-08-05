@@ -14,6 +14,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Icon } from "@iconify/react";
 import { toast } from "sonner";
+import TagInput from "@/components/admin/TagInput";
+import { roleGroups, techOptions } from "@/data/roles";
+
 
 function ImageField({ value, onChange, label = "Image URL" }: any) {
   const [uploading, setUploading] = useState(false);
@@ -176,15 +179,25 @@ function ExperiencesTab() {
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState<any>(null);
 
-  const openNew = () => { setForm({ date: "", title: "", short_desc: "", full_desc: "", category: "event", image: "", sort_order: data.length + 1 }); setOpen(true); };
-  const openEdit = (p: any) => { setForm({ ...p }); setOpen(true); };
+  const openNew = () => { setForm({ date: "", title: "", short_desc: "", full_desc: "", category: "event", image: "", sort_order: data.length + 1, roles: [], techs: [], organization: "", org_logo: "", location: "" }); setOpen(true); };
+  const openEdit = (p: any) => { setForm({ ...p, roles: p.roles ?? [], techs: p.techs ?? [] }); setOpen(true); };
+
   const save = async () => {
+    const payload = {
+      ...form,
+      organization: form.organization || null,
+      org_logo: form.org_logo || null,
+      location: form.location || null,
+      roles: form.roles ?? [],
+      techs: form.techs ?? [],
+    };
     const { error } = form.id
-      ? await supabase.from("experiences").update(form).eq("id", form.id)
-      : await supabase.from("experiences").insert(form);
+      ? await supabase.from("experiences").update(payload).eq("id", form.id)
+      : await supabase.from("experiences").insert(payload);
     if (error) return toast.error(error.message);
     toast.success("Saved"); setOpen(false); reload();
   };
+
   const remove = async (id: string) => {
     if (!confirm("Delete this experience?")) return;
     const { error } = await supabase.from("experiences").delete().eq("id", id);
@@ -242,8 +255,14 @@ function ExperiencesTab() {
                   </Select>
                 </div>
                 <div><Label>Sort Order</Label><Input type="number" value={form.sort_order} onChange={(e) => setForm({ ...form, sort_order: +e.target.value })} /></div>
+                <div><Label>Organization / Company</Label><Input value={form.organization ?? ""} onChange={(e) => setForm({ ...form, organization: e.target.value })} /></div>
+                <div><Label>Location (optional)</Label><Input value={form.location ?? ""} onChange={(e) => setForm({ ...form, location: e.target.value })} /></div>
               </div>
+              <TagInput label="Roles (multi, searchable, custom allowed)" value={form.roles ?? []} onChange={(v) => setForm({ ...form, roles: v })} groups={roleGroups} placeholder="Search role or type a custom one…" />
+              <TagInput label="Technologies / Tools" value={form.techs ?? []} onChange={(v) => setForm({ ...form, techs: v })} options={techOptions} placeholder="Search tech or type a custom one…" />
+              <ImageField label="Organization Logo (optional)" value={form.org_logo} onChange={(v: string) => setForm({ ...form, org_logo: v })} />
               <ImageField value={form.image} onChange={(v: string) => setForm({ ...form, image: v })} />
+
             </div>
           )}
           <DialogFooter className="flex-col-reverse sm:flex-row gap-2">
