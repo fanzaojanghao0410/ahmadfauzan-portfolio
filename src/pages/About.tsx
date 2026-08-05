@@ -169,27 +169,6 @@ const About = () => {
             ))}
           </motion.section>
 
-          {/* Highlights */}
-          <motion.section
-            className="mb-20 text-center"
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
-          >
-            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-foreground">Highlights</h2>
-            <div className="flex flex-wrap justify-center gap-2.5">
-              {highlights.map((h) => (
-                <motion.div key={h} variants={fadeUp} whileHover={{ y: -3 }}>
-                  <Badge variant="secondary" className="px-4 py-2 text-sm font-medium">
-                    <Icon icon="lucide:sparkle" className="w-3.5 h-3.5 mr-2 text-primary" />
-                    {h}
-                  </Badge>
-                </motion.div>
-              ))}
-            </div>
-          </motion.section>
-
           {/* What I Do */}
           <motion.section
             className="mb-20"
