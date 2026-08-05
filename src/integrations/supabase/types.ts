@@ -22,8 +22,13 @@ export type Database = {
           full_desc: string
           id: string
           image: string
+          location: string | null
+          org_logo: string | null
+          organization: string | null
+          roles: string[]
           short_desc: string
           sort_order: number
+          techs: string[]
           title: string
         }
         Insert: {
@@ -33,8 +38,13 @@ export type Database = {
           full_desc: string
           id?: string
           image: string
+          location?: string | null
+          org_logo?: string | null
+          organization?: string | null
+          roles?: string[]
           short_desc: string
           sort_order?: number
+          techs?: string[]
           title: string
         }
         Update: {
@@ -44,8 +54,13 @@ export type Database = {
           full_desc?: string
           id?: string
           image?: string
+          location?: string | null
+          org_logo?: string | null
+          organization?: string | null
+          roles?: string[]
           short_desc?: string
           sort_order?: number
+          techs?: string[]
           title?: string
         }
         Relationships: []
