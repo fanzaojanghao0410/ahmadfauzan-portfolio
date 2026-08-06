@@ -283,7 +283,7 @@ const Index = () => {
     clickRef.current.timer = setTimeout(() => { clickRef.current.count = 0; }, 600);
   };
 
-  const name = "Ojan";
+  const name = "Ahmad Fauzan";
   const rotatingTexts = ["building", "designing", "coding", "creating"];
   const description = "Frontend Developer & Creative Technologist crafting clean, interactive, and responsive web experiences where design, technology, and creativity meet.";
 
@@ -319,7 +319,7 @@ const Index = () => {
 
               {/* Name */}
               <motion.p variants={itemVariants} className="text-sm md:text-base uppercase tracking-[0.35em] text-muted-foreground mb-3">
-                Hello world, you can call me
+                Hello, I'm
               </motion.p>
               <motion.h1 variants={itemVariants} onClick={handleSecretClick} className="name-typography text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-5 tracking-tighter select-none cursor-default">
                 {name}
