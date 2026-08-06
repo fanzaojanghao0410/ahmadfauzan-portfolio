@@ -106,7 +106,7 @@ const About = () => {
                 <ProfileCard
                   name="Ahmad Fauzan"
                   title="Frontend Developer & Creative Technologist"
-                  handle="ahmadfauzan"
+                  handle="0jan.md"
                   status="Online"
                   contactText="Contact Me"
                   avatarUrl={profile?.about_photo_url || "/profile1.png"}
