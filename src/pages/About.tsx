@@ -90,9 +90,6 @@ const About = () => {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-5xl mx-auto">
 
           <div className="text-center mb-20">
-            <motion.div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 bg-primary/5 border border-primary/10" whileHover={{ scale: 1.05 }}>
-              <span className="text-sm font-semibold tracking-wide text-foreground">Frontend Developer & Creative Technologist</span>
-            </motion.div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">About Me</h1>
             <p className="text-lg max-w-3xl mx-auto text-muted-foreground">
               I build modern web experiences where clean interfaces, thoughtful interaction, and solid engineering meet.
@@ -105,7 +102,7 @@ const About = () => {
               <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2, duration: 0.6 }} className="flex justify-center lg:justify-start">
                 <ProfileCard
                   name="Ahmad Fauzan"
-                  title="Frontend Developer & Creative Technologist"
+                  title="Frontend Dev & Creative Tech"
                   handle="0jan.md"
                   status="Online"
                   contactText="Contact Me"
