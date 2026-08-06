@@ -82,7 +82,7 @@ const AboutPreview = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div className="order-2 lg:order-1" initial={{ opacity: 0, x: -30 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ delay: 0.2, duration: 0.6 }}>
             <p className="text-lg leading-relaxed mb-6 text-muted-foreground">
-              I am Ojan, an IT student with a multifaceted creative passion. By day, I craft 
+              Just call me Ojan, an IT student with a multifaceted creative passion. By day, I craft 
               elegant frontend solutions; by night, I weave intricate narratives as a novelist.
             </p>
             <p className="text-lg leading-relaxed mb-6 text-muted-foreground">
