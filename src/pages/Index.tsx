@@ -82,7 +82,7 @@ const AboutPreview = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div className="order-2 lg:order-1" initial={{ opacity: 0, x: -30 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ delay: 0.2, duration: 0.6 }}>
             <p className="text-lg leading-relaxed mb-6 text-muted-foreground">
-              I am Ahmad Fauzan, an IT student with a multifaceted creative passion. By day, I craft 
+              I am Ojan, an IT student with a multifaceted creative passion. By day, I craft 
               elegant frontend solutions; by night, I weave intricate narratives as a novelist.
             </p>
             <p className="text-lg leading-relaxed mb-6 text-muted-foreground">
@@ -101,7 +101,7 @@ const AboutPreview = () => {
             <ProfileCard
               name="Ahmad Fauzan"
               title="Creative Visionary & Developer"
-              handle="ahmadfauzan"
+              handle="0jan.md"
               status="Online"
               contactText="Contact Me"
               avatarUrl={profile?.hero_photo_url || "/profile1.png"}
@@ -283,7 +283,7 @@ const Index = () => {
     clickRef.current.timer = setTimeout(() => { clickRef.current.count = 0; }, 600);
   };
 
-  const name = "Ahmad Fauzan";
+  const name = "Ojan";
   const rotatingTexts = ["building", "designing", "coding", "creating"];
   const description = "Frontend Developer & Creative Technologist crafting clean, interactive, and responsive web experiences where design, technology, and creativity meet.";
 
@@ -319,7 +319,7 @@ const Index = () => {
 
               {/* Name */}
               <motion.p variants={itemVariants} className="text-sm md:text-base uppercase tracking-[0.35em] text-muted-foreground mb-3">
-                Hello, I'm
+                Hello world, you can call me
               </motion.p>
               <motion.h1 variants={itemVariants} onClick={handleSecretClick} className="name-typography text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-5 tracking-tighter select-none cursor-default">
                 {name}
