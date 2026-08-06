@@ -44,7 +44,6 @@ export const techStack: TechGroup[] = [
     category: 'Tools',
     icon: 'lucide:wrench',
     items: [
-      { name: 'Lovable', icon: 'lucide:sparkles', hint: 'AI-powered app building' },
       { name: 'GitHub', icon: 'simple-icons:github', hint: 'Version control & collaboration', invertOnDark: true },
       { name: 'Figma', icon: 'logos:figma', hint: 'UI design & prototyping' },
       { name: 'VS Code', icon: 'logos:visual-studio-code', hint: 'Primary code editor' },
