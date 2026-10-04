@@ -14,6 +14,12 @@ export interface DBProject {
   github: string | null;
   image: string;
   sort_order: number;
+  category?: string;
+  featured?: boolean;
+  problem?: string | null;
+  tech_decisions?: string | null;
+  challenges?: string | null;
+  results?: string | null;
 }
 
 export interface DBExperience {

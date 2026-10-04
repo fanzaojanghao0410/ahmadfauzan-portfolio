@@ -101,10 +101,10 @@ function ProjectsTab() {
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState<any>(null);
 
-  const openNew = () => { setForm({ title: "", description: "", tags: "", icon: "lucide:code-2", status: "Completed", status_color: "bg-blue-500", link: "", github: "", image: "", sort_order: data.length + 1 }); setOpen(true); };
+  const openNew = () => { setForm({ title: "", description: "", tags: "", icon: "lucide:code-2", status: "Completed", status_color: "bg-blue-500", link: "", github: "", image: "", sort_order: data.length + 1, category: "Web Application", featured: false, problem: "", tech_decisions: "", challenges: "", results: "" }); setOpen(true); };
   const openEdit = (p: any) => { setForm({ ...p, tags: (p.tags ?? []).join(", ") }); setOpen(true); };
   const save = async () => {
-    const payload = { ...form, tags: form.tags.split(",").map((t: string) => t.trim()).filter(Boolean), link: form.link || null, github: form.github || null };
+    const payload = { ...form, tags: form.tags.split(",").map((t: string) => t.trim()).filter(Boolean), link: form.link || null, github: form.github || null, problem: form.problem || null, tech_decisions: form.tech_decisions || null, challenges: form.challenges || null, results: form.results || null, category: form.category || "Web Application" };
     const { error } = form.id
       ? await supabase.from("projects").update(payload).eq("id", form.id)
       : await supabase.from("projects").insert(payload);
@@ -160,6 +160,26 @@ function ProjectsTab() {
                 <div><Label>Sort Order</Label><Input type="number" value={form.sort_order} onChange={(e) => setForm({ ...form, sort_order: +e.target.value })} /></div>
                 <div><Label>Live Link</Label><Input value={form.link ?? ""} onChange={(e) => setForm({ ...form, link: e.target.value })} /></div>
                 <div><Label>Github</Label><Input value={form.github ?? ""} onChange={(e) => setForm({ ...form, github: e.target.value })} /></div>
+                <div>
+                  <Label>Category</Label>
+                  <Select value={form.category ?? "Web Application"} onValueChange={(v) => setForm({ ...form, category: v })}>
+                    <SelectTrigger><SelectValue /></SelectTrigger>
+                    <SelectContent>
+                      {["Web Application", "Landing Page", "UI/UX", "Mobile", "Other"].map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <label className="flex items-center gap-2 text-sm pt-6">
+                  <input type="checkbox" checked={!!form.featured} onChange={(e) => setForm({ ...form, featured: e.target.checked })} className="w-4 h-4 accent-primary" />
+                  Featured / Flagship project
+                </label>
+              </div>
+              <div className="pt-2 border-t space-y-3">
+                <p className="text-sm font-semibold">Case Study (optional)</p>
+                <div><Label>Problem Statement</Label><Textarea value={form.problem ?? ""} onChange={(e) => setForm({ ...form, problem: e.target.value })} /></div>
+                <div><Label>Technical Decisions</Label><Textarea value={form.tech_decisions ?? ""} onChange={(e) => setForm({ ...form, tech_decisions: e.target.value })} /></div>
+                <div><Label>Challenges & Solutions</Label><Textarea value={form.challenges ?? ""} onChange={(e) => setForm({ ...form, challenges: e.target.value })} /></div>
+                <div><Label>Results / Impact</Label><Textarea value={form.results ?? ""} onChange={(e) => setForm({ ...form, results: e.target.value })} /></div>
               </div>
               <ImageField value={form.image} onChange={(v: string) => setForm({ ...form, image: v })} />
             </div>
