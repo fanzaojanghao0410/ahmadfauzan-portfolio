@@ -101,7 +101,7 @@ const AboutPreview = () => {
             <ProfileCard
               name="Ahmad Fauzan"
               title="Creative Visionary & Developer"
-              handle="ahmadfauzan.md"
+              handle="Ojan"
               status="Online"
               contactText="Contact Me"
               avatarUrl={profile?.hero_photo_url || "/profile1.png"}
