@@ -122,10 +122,10 @@ const SkillsPreview = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const previewSkills = [
-    { title: 'Visual Design', icon: 'lucide:palette' },
-    { title: 'Novel Writing', icon: 'lucide:book-open' },
-    { title: 'Frontend Dev', icon: 'lucide:code-2' },
-    { title: 'Performance Art', icon: 'lucide:drama' },
+    { title: 'Frontend Development', icon: 'lucide:code-2' },
+    { title: 'UI/UX Implementation', icon: 'lucide:palette' },
+    { title: 'Responsive Web', icon: 'lucide:monitor-smartphone' },
+    { title: 'Interactive Systems', icon: 'lucide:sparkles' },
   ];
 
   return (
