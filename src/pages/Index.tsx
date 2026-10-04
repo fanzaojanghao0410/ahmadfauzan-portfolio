@@ -358,7 +358,7 @@ const Index = () => {
               {/* Stats */}
               <motion.div variants={itemVariants} className="grid grid-cols-3 gap-8 max-w-2xl mx-auto pt-12 border-t border-border">
                 {[
-                  { value: "4", label: "Creative Disciplines" },
+                  { value: "10+", label: "Technologies" },
                   { value: "10+", label: "Projects" },
                   { value: "100%", label: "Passion" }
                 ].map((stat, index) => (
