@@ -122,10 +122,10 @@ const SkillsPreview = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const previewSkills = [
-    { title: 'Visual Design', icon: 'lucide:palette' },
-    { title: 'Novel Writing', icon: 'lucide:book-open' },
-    { title: 'Frontend Dev', icon: 'lucide:code-2' },
-    { title: 'Performance Art', icon: 'lucide:drama' },
+    { title: 'Frontend Development', icon: 'lucide:code-2' },
+    { title: 'UI/UX Implementation', icon: 'lucide:palette' },
+    { title: 'Responsive Web', icon: 'lucide:monitor-smartphone' },
+    { title: 'Interactive Systems', icon: 'lucide:sparkles' },
   ];
 
   return (
@@ -358,7 +358,7 @@ const Index = () => {
               {/* Stats */}
               <motion.div variants={itemVariants} className="grid grid-cols-3 gap-8 max-w-2xl mx-auto pt-12 border-t border-border">
                 {[
-                  { value: "4", label: "Creative Disciplines" },
+                  { value: "10+", label: "Technologies" },
                   { value: "10+", label: "Projects" },
                   { value: "100%", label: "Passion" }
                 ].map((stat, index) => (
