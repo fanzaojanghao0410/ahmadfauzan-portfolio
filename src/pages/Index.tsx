@@ -346,7 +346,7 @@ const Index = () => {
                   </Button>
 
                 </Link>
-                <a href="https://drive.google.com/file/d/1L2T7qBPcMi-OD2wxa7pENW-Gs322s8QH/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                <a href="https://drive.google.com/file/d/1wNPRoh5m3WwnDuwpIabwZge_x3hmxqwd/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
                   <Button size="lg" variant="outline" className="outline-button w-full sm:w-auto px-8 py-6 text-base md:text-lg rounded-xl font-semibold">
                     <Icon icon="lucide:download" className="mr-2 w-5 h-5" />
                     Download CV
